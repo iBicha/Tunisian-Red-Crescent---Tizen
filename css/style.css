@@ -1,0 +1,357 @@
+.win-toggleswitch-value {
+	color: black;
+}
+.aboutText{
+	color: black;
+	margin: 15px;
+	text-align: justify;
+}
+.aboutImage{
+	width: 120px;
+	height: 120px;
+	margin: 5px auto 5px;
+	text-align: justify;
+	background-image: url(../badge.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+}
+.aboutDev{
+	width: 100%;
+	height: 120px;
+	margin: 5px auto 5px;
+	text-align: justify;
+	background-image: url(../images/about.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+}
+#accidentpreview {
+	width: 100%;
+	height: 200px;
+	background-image: url(../images/camera_icon.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+}
+
+#cameraButton {
+	width: 50px;
+	height: 50px;
+	left: 20px;
+	top: 0px;
+	position: absolute;
+	background-image: url(../images/camera_icon.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+	background-image: url(../images/camera_icon.png);
+}
+
+#galleryButton {
+	width: 50px;
+	height: 50px;
+	right: 20px;
+	top: 0px;
+	position: absolute;
+	background-image: url(../images/gallery.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+	position: absolute;
+}
+
+.profilePic {
+	width: 120px;
+	height: 120px;
+	margin: 25px auto 10px;
+	border-radius: 80px;
+	-webkit-border-radius: 80px;
+	-moz-border-radius: 50px;
+	box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	padding: 0px;
+	background-image: url(../images/user.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+
+.fileInput {
+	opacity: 0.0;
+	width: 1px;
+	height: 1px;
+	z-index: -1;
+}
+
+.waitingForInternet {
+	background-color: #ff8c00;
+	width: 100%;
+	height: 30px;
+	position: absolute;
+	bottom: 0px;
+	text-align: center;
+	z-index: 1000;
+}
+
+.connectedToInternet {
+	background-color: #5eff00;
+	width: 100%;
+	height: 30px;
+	position: absolute;
+	bottom: 0px;
+	text-align: center;
+	z-index: 1000;
+}
+
+.pageTitle {
+	display: block;
+	font-size: 1.5em;
+	margin-left: 0px;
+	margin-right: 0;
+	font-weight: bold;
+	color: #ffffff;
+	height: 50px;
+	width: 100%;
+	text-align: center;
+	line-height: 50px;
+	text-overflow: ellipsis;
+	vertical-align: middle;
+	background-color: rgb(255, 59, 59);
+}
+
+.messageDescription {
+	display: block;
+	font-size: 1.0em;
+	margin-bottom: 0.83em;
+	margin-left: 5px;
+	margin-right: 5px;
+	font-weight: bold;
+	color: #000;
+	width: 100%;
+}
+
+.win-splitview-pane {
+	background-color: rgb(255, 59, 59);
+}
+
+.content,#app {
+	height: 100%;
+}
+
+#app .win-splitviewpanetoggle {
+	float: left;
+}
+
+/* SplitView pane content style*/
+#app .header {
+	white-space: nowrap;
+}
+
+#app .title {
+	font-size: 25px;
+	left: 50px;
+	margin-top: 6px;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+#app .nav-commands {
+	margin-top: 20px;
+}
+
+.win-splitviewcommand-button {
+	background-color: transparent;
+}
+
+#app .win-splitview-pane-closed .win-splitviewcommand-label {
+	/*  Make sure pane content doesn't scroll if 
+    SplitViewCommand label receives focus while pane is closed.
+    */
+	visibility: hidden;
+}
+
+/*SplitView content style*/
+#app .win-splitview-content {
+	background-color: #FFDFDF;
+}
+
+#app .contenttext {
+	margin-left: 0px;
+	margin-top: 0px;
+}
+
+#map {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+}
+
+/*LOGIN*/
+.login-box {
+	position: relative;
+	margin: 0px auto;
+	background-color: #FFF;
+	padding: 10px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.33);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.33);
+	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.33);
+	height: 100%;
+	overflow-y: scroll;
+}
+
+.lb-header {
+	position: relative;
+	color: #00415d;
+	margin: 5px 5px 10px 5px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
+	text-align: center;
+	height: 28px;
+}
+
+.lb-header a {
+	margin: 0 25px;
+	padding: 0 10px;
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+
+.lb-header .active {
+	color: #029f5b;
+	font-size: 16px;
+}
+
+.social-login {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: auto;
+	padding: 10px 0 15px 0;
+	border-bottom: 1px solid #eee;
+}
+
+.social-login a {
+	position: relative;
+	float: left;
+	width: 50%;
+	text-decoration: none;
+	color: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	padding: 12px;
+	border-radius: 2px;
+	font-size: 12px;
+	text-transform: uppercase;
+	margin: 0 25%;
+	text-align: center;
+}
+
+.social-login a i {
+	position: relative;
+	float: left;
+	width: 20px;
+	top: 2px;
+}
+
+.social-login a:first-child {
+	background-color: #49639F;
+}
+
+.email-login,.email-signup {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.email-edit {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+
+.u-form-group {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.u-form-group input[type="email"],.u-form-group input[type="text"],.u-form-group input[type="date"],.u-form-group input[type="number"],.u-form-group input[type="password"]
+	{
+	width: 80%;
+	height: 45px;
+	outline: none;
+	border: 1px solid #ddd;
+	padding: 0 10px;
+	border-radius: 2px;
+	color: #333;
+	font-size: 0.8rem;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+
+.u-form-group input:focus {
+	border-color: #358efb;
+}
+
+.u-form-group button {
+	width: 50%;
+	background-color: #DF4A32;
+	border: none;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 14px 0;
+	border-radius: 2px;
+	text-transform: uppercase;
+}
+
+/* Template for the items in the ListViews in this sample */
+.smallListIconTextItem {
+	width: 242px;
+	height: 85px;
+	padding: 5px;
+	overflow: hidden;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	color: red;
+}
+
+.smallListIconTextItem img.smallListIconTextItem-Image {
+	width: 60px;
+	height: 60px;
+	margin: 5px;
+	margin-right: 20px;
+}
+
+.smallListIconTextItem .smallListIconTextItem-Detail {
+	margin: 5px;
+	color: black;
+}
+
+.listLayoutTopHeaderTemplateRoot {
+	font-size: larger;
+	margin-left: 16px;
+}
+
+.listView {
+ 
+	
+}
+.win-container {
+	height: 85px;
+}
+ 
+ 

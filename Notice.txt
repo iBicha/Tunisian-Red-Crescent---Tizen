@@ -1,0 +1,2 @@
+Hello,
+Tunisian Red Crescent is a Tizen app designed for Tunisian users only. It only contains Tunisian SOS numbers, will be administrated by Tunisian Red Crescent members, and should be downloaded only by Tunisian users.

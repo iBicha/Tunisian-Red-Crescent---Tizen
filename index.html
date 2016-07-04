@@ -1,0 +1,346 @@
+<html>
+
+<head>
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link href="lib/winjs/css/ui-dark.css" rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet" />
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="lib/winjs/js/base.js"></script>
+<script src="lib/winjs/js/ui.js"></script>
+
+</head>
+
+<body>
+	<div id="fb-root" style="display: none;"></div>
+
+	<div id="app">
+		<div class="splitView" data-win-control="WinJS.UI.SplitView"
+			data-win-options="{onbeforeclose : mySplitView.closed,onbeforeopen : mySplitView.opened}">
+			<!-- Pane area -->
+			<div style="overflow-y: scroll;">
+				<div class="header">
+					<button class="win-splitviewpanetoggle"
+						data-win-control="WinJS.UI.SplitViewPaneToggle"
+						data-win-options="{ splitView: select('.splitView')}"></button>
+					<div class="title">Red Crescent Tunisia</div>
+				</div>
+				<div class="profilePic mainPic" style="display: none;"></div>
+				<br>
+				<div class="toggleLocation"
+					style="display: none; margin-left: 20px;"
+					data-win-control="WinJS.UI.ToggleSwitch"
+					data-win-options="{'labelOff': 'Location Sharing Off','labelOn': 'Location Sharing On', onchange: toggleLocation.onchange}"></div>
+				<div class="nav-commands">
+					<div style="display: none;" class="online"
+						data-win-control="WinJS.UI.SplitViewCommand"
+						data-win-options="{ label: 'Map', icon: 'map',oninvoked: mySplitView.homeClicked}"></div>
+					<div style="display: none;" class="location online"
+						data-win-control="WinJS.UI.SplitViewCommand"
+						data-win-options="{ label: 'Where Am I?', icon: 'target',oninvoked: mySplitView.whereClicked}"></div>
+					<div style="display: none;" class="online loggedin"
+						data-win-control="WinJS.UI.SplitViewCommand"
+						data-win-options="{ label: 'Profile', icon: 'contactinfo',oninvoked: mySplitView.profileClicked}"></div>
+					<div style="display: none;" class="online loggedout"
+						data-win-control="WinJS.UI.SplitViewCommand"
+						data-win-options="{ label: 'Login', icon: 'switch',oninvoked: mySplitView.loginClicked}"></div>
+					<div style="display: none;" class="online loggedin"
+						data-win-control="WinJS.UI.SplitViewCommand"
+						data-win-options="{ label: 'Messages And News', icon: 'message',oninvoked: mySplitView.messagesClicked}"></div>
+					<div style="display: none;" class="location"
+						data-win-control="WinJS.UI.SplitViewCommand"
+						data-win-options="{ label: 'Report Accident', icon: 'reporthacked',oninvoked: mySplitView.reportAccidentClicked}"></div>
+					<div data-win-control="WinJS.UI.SplitViewCommand"
+						data-win-options="{ label: 'SOS numbers', icon: 'phone',oninvoked: mySplitView.sosClicked}"></div>
+					<div data-win-control="WinJS.UI.SplitViewCommand"
+						data-win-options="{ label: 'Settings', icon: 'settings',oninvoked: mySplitView.settingsClicked}"></div>
+					<div data-win-control="WinJS.UI.SplitViewCommand"
+						data-win-options="{ label: 'About', icon: 'help',oninvoked: mySplitView.aboutClicked}"></div>
+				</div>
+				<div class="aboutImage mainPic" style="display: none;"></div>
+			</div>
+
+			<!-- Content area -->
+			<div class="contenttext">
+				<div id="mapPage">
+					<div id="map"></div>
+				</div>
+
+				<div id="loginPage" style="display: none;">
+
+					<div class="login-box">
+						<div class="lb-header">
+							<a href="#" class="active" id="login-box-link">Login</a> <a
+								href="#" id="signup-box-link">Sign Up</a>
+						</div>
+						<img style="display: none;" class="social-login" alt="Login with Facebook"
+							src="images/facebookLogin.png" onclick="FacebookAuth()">
+
+						<div class="email-login">
+							<div class="u-form-group">
+								<input id="loginUsername" type="text" placeholder="Username" />
+							</div>
+							<div class="u-form-group">
+								<input id="loginPassword" type="password" placeholder="Password" />
+							</div>
+							<div class="u-form-group">
+								<button onclick="Authenticate()">Log in</button>
+							</div>
+							<!-- 
+							<div class="u-form-group">
+								<a href="#" class="forgot-password">Forgot password?</a>
+							</div>
+							 -->
+						</div>
+						<div class="email-signup">
+							<div class="u-form-group">
+								<input id="signupFirstName" type="text" placeholder="First Name" />
+							</div>
+							<div class="u-form-group">
+								<input id="signupLastName" type="text" placeholder="Last Name" />
+							</div>
+							<div class="u-form-group">
+								<input id="signupUsername" type="text" placeholder="Username"/>
+							</div>
+							<div class="u-form-group">
+								<input id="signupBirthDate" type="date" placeholder="Birthday" />
+							</div>
+							<div class="u-form-group">
+								<input id="signupPassword" type="password"
+									placeholder="Password" />
+							</div>
+							<div class="u-form-group">
+								<input id="signupPasswordConfirm" type="password"
+									placeholder="Confirm Password" />
+							</div>
+							<div class="u-form-group">
+								<button onclick="AddUser()">Sign Up</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="profilePage"
+					style="display: none; ">
+					<div class="pageTitle">Profile</div>
+
+					<div class="email-edit" style="margin-top: 0.83em;
+					overflow-y: scroll;  height: 100%;">
+
+
+						<input class="fileInput" id="profileCameraInput" type="file"
+							accept="image/*" capture="camcorder"> <label
+							class="online loggedin" id="cameraButton"
+							for="profileCameraInput"></label>
+
+
+						<div id="profilePicEdit" class="profilePic"></div>
+						
+						<!-- 
+						<button class="online loggedin" onclick="SelectImage()">Select Image</button>
+						
+						<input class="fileInput" id="profileGalleryInput" type="file"
+							accept="image/*" capture="filesystem">
+							
+						 -->
+						
+							 <label
+							class="online loggedin" id="galleryButton"
+							for="profileGalleryInput" onclick="SelectImage()"></label>
+
+						<label style="color: black;" >First Name</label>
+						<div class="u-form-group">
+							
+							<input id="editFirstName" type="text" placeholder="First Name" />
+						</div>
+						<div class="u-form-group">
+							<label style="color: black;">Last Name</label>
+							<input id="editLastName" type="text" placeholder="Last Name" />
+						</div>
+						<div class="u-form-group">
+							<label style="color: black;">Username</label>
+							<input id="editUsername" type="text" placeholder="Username" />
+						</div>
+						<div class="u-form-group">
+							<label style="color: black;">Birthday</label>
+							<input id="editBirthDate" type="date" placeholder="Birthday" />
+						</div>
+						<div class="u-form-group">
+							<label style="color: black;">Password</label>
+							<input id="editPassword" type="password" placeholder="Password" />
+						</div>
+						<div class="u-form-group">
+							<label style="color: black;">Confirm Password</label>
+							<input id="editPasswordConfirm" type="password"
+								placeholder="Confirm Password" />
+						</div>
+						<div class="u-form-group">
+							<button class="online loggedin" onclick="EditUser()">Update
+								Changes</button>
+						</div>
+						<div style="height: 100px;"></div>
+					</div>
+				</div>
+				<div id="messagesPage" style="display: none;">
+					<!-- Simple template for the ListView instantiation  -->
+					<div class="smallListIconTextTemplate"
+						data-win-control="WinJS.Binding.Template" style="display: none">
+						<div class="smallListIconTextItem">
+							<img src="images/message.png" class="smallListIconTextItem-Image" />
+							<div class="smallListIconTextItem-Detail">
+								<h4 class="win-h4" data-win-bind="textContent: Title"></h4>
+								<h6 class="win-h6" data-win-bind="textContent: DescriptionShort"></h6>
+							</div>
+						</div>
+					</div>
+					<div class="pageTitle">Messages/News</div>
+					<button style="position: absolute; right: 0px; top: 0px;"
+						data-win-control="WinJS.UI.AppBarCommand"
+						data-win-options="{icon:'add',onclick:OnNewMessageClicked}"></button>
+					<!-- The declarative markup necesary for ListView instantiation -->
+					<!-- Call WinJS.UI.processAll() in your initialization code -->
+					<div id="listView" class="listView win-selectionstylefilled"
+						class="win-selectionstylefilled"
+						data-win-control="WinJS.UI.ListView"
+						data-win-options="{
+                    itemDataSource: Messages.ListView.data.dataSource,
+                    itemTemplate: select('.smallListIconTextTemplate'),
+                    layout: { type: WinJS.UI.ListLayout}
+                 }">
+					</div>
+					
+				</div>
+				<div id="messageNewPage" style="display: none;">
+					<div class="pageTitle">New Message To Admin</div>
+
+					<div class="email-login">
+
+						<div class="u-form-group">
+							<input id="newMessageTitle" type="text" placeholder="Title" />
+						</div>
+						<div class="u-form-group">
+							<div class="messageDescription">Body</div>
+							<textarea style="width: 100%;" id="newMessageDescription" rows="4" cols="50"></textarea>
+						</div>
+
+						<div class="u-form-group">
+							<button id="sendMsgBtn" onclick="SendMessage()">Send</button>
+						</div>
+
+					</div>
+				</div>
+				<div id="messageViewPage" style="display: none; overflow-y: scroll;">
+					<div id="messageTitle" class="pageTitle">Messages And News</div>
+
+					<img id="messageImage" alt="" src="" style="max-width: 100%;">
+					<div id="messageDescription" class="messageDescription">Description</div>
+				</div>
+				<div id="reportAccidentPage" style="display: none;">
+
+					<div class="pageTitle">Report Accident</div>
+					<input class="fileInput" id="imageAccidentInput" type="file"
+						accept="image/*" capture="camcorder"> <label
+						class="online loggedin" id="accidentPreview"
+						for="imageAccidentInput"></label>
+					<div class="messageDescription">Description</div>
+					<div class="email-login">
+						<div class="u-form-group">
+							<textarea style="width: 100%;" id="reportDescription" rows="4" cols="50"></textarea>
+						</div>
+
+						<div class="u-form-group">
+							<button class="online loggedin" id="reportBtn"
+								onclick="ReportAccident()" style="display: none;">Report!</button>
+							<button class="loggedout" id="SMSreportBtn"
+								onclick="ReportAccidentOffline()">Report offline (sms)</button>
+						</div>
+					</div>
+				</div>
+				<div id="settingsPage" style="display: none;">
+					<div class="pageTitle">Settings</div>
+
+					<div class="toggleConnectOnStartUp"
+						style="margin-left: 20px; color: black;"
+						data-win-control="WinJS.UI.ToggleSwitch"
+						data-win-options="{'labelOff': 'Connect On Startup','labelOn': 'Connect On Startup',onchange: toggleConnectOnStartUp.onchange}"></div>
+					<div class="toggleShareOnStartUp" style="margin-left: 20px;"
+						data-win-control="WinJS.UI.ToggleSwitch"
+						data-win-options="{'labelOff': 'Share Location On Startup','labelOn': 'Share Location On Startup',onchange: toggleShareOnStartUp.onchange}"></div>
+					<div class="email-login">
+
+						<div class="u-form-group">
+
+							<button class="loggedin online" onclick="RequestMembership()">Request
+								Membership</button>
+						</div>
+						<div class="u-form-group">
+							<button class="loggedin online" onclick="RequestAdminship()">Request
+								Adminship</button>
+						</div>
+						<div class="u-form-group">
+
+							<button class="loggedin" onclick="Logout()">Logout</button>
+						</div>
+					</div>
+				</div>
+				<div id="aboutPage" style="display: none; overflow-y: scroll; height: 100%">
+					<div class="aboutContent" style="">
+						<div class="pageTitle">About</div>
+						<div class="aboutImage"></div>
+						<div class="aboutText">Tunisian Red Crescent</div>
+						<div class="aboutText">Version : 1.0.4</div>
+						<p class="aboutText">This app is made by Brahim Hadriche and
+							Haitham Sboui, for the Tunisian Red Crescent, under an academic
+							context, in the ESPRIT school of engineering, yet for the soul
+							purpose of helping the Tunisian Red Crescent reaching their goals
+							and saving lives.</p>
+						<div class="aboutDev"></div>
+					</div>
+				</div>
+				<div id="sosPage" style="display: none; height: 100%;">
+					<div class="pageTitle">SOS Numbers</div>
+					<div class="smallListIconTextTemplate2"
+						data-win-control="WinJS.Binding.Template" style="display: none">
+						<div class="smallListIconTextItem">
+							<img src="#" class="smallListIconTextItem-Image"
+								data-win-bind="src: picture" />
+							<div class="smallListIconTextItem-Detail">
+								<h4 class="win-h4" data-win-bind="textContent: title"></h4>
+								<h6 class="win-h6" data-win-bind="textContent: text"></h6>
+							</div>
+						</div>
+					</div>
+					<div id="sosListView" class="listView win-selectionstylefilled"
+						class="win-selectionstylefilled"
+						data-win-control="WinJS.UI.ListView"
+						data-win-options="{
+                    itemDataSource: SOS.ListView.data.dataSource,
+                    itemTemplate: select('.smallListIconTextTemplate2'),
+                    layout: { type: WinJS.UI.ListLayout}
+                 }">
+					</div>
+					
+					
+				</div>
+			</div>
+			<div id="internetIndicator" class="waitingForInternet">waiting
+				for servers...</div>
+		</div>
+		<script src="js/ImageSelect.js"></script>
+		<script src="js/Sms.js"></script>
+		<script src="js/Call.js"></script>
+		<script src="js/UI.js"></script>
+		<script src="js/Location.js"></script>
+		<script src="js/Webservice.js"></script>
+		<script
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzUHY5YJwFKF111-VHtJXLVyfdto26Fl8"></script>
+		<script src="js/Map.js"></script>
+		<script src="js/socket.io-1.3.7.js"></script>
+		<script src="js/Socket.js"></script>
+		<script src="js/Facebook.js"></script>
+		<script src="js/Main.js"></script>
+</body>
+
+</html>
